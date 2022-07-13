@@ -8,6 +8,7 @@ Here is a brief overview of the Public Source Code.
    - The Website URL that the Sidebar Ads link to 
 - **video.py** can be used to extract metadata of Video Ads in YouTube, which includes
   - Ids of the video ads
+- **EXAMPLE_sidebarid.txt** and **EXAMPLE_videoid.txt** are examples of video list to extract sidebar ads and video ads meta data
 
 
 
