@@ -16,6 +16,9 @@ for line in lines:
 f.close()
 prev = ""
 
+#store the result in v_RESULT.txt (change to any other name you prefer)
+output = open("v_RESULT.txt","w", encoding="utf-8")
+
 for l in videos:
     #connect to the Youtube video page
     toget = "https://www.youtube.com/watch?v=" + l
@@ -24,10 +27,6 @@ for l in videos:
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--public")
     driver = webdriver.Chrome(ChromeDriverManager().install(),chrome_options=chrome_options)
-
-    #store the result in v_RESULT.txt (change to any other name you prefer)
-    output = open("v_RESULT.txt","w", encoding="utf-8")
-   
 
     for i in range(1,3):
         try:
@@ -41,6 +40,7 @@ for l in videos:
             #get the adVideo id tag
             for line in commas:            
                 if('adVideoId"' in str(line)):
+                    print(line)
                     reverse = line[::-1]
                     # print(reverse + " REVERSED \n ")
                     end = reverse.find('\"')
@@ -60,5 +60,5 @@ for l in videos:
         
         except:
             continue
-    output.close()
     driver.close()
+output.close()

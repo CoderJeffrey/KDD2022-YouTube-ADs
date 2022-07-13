@@ -20,6 +20,9 @@ f.close()
 prev = ""
 info = []
 
+fname = "s_RESULT.txt"
+output = open(fname, "w", encoding="utf-8")
+
 for l in videos:
     #connect to the youtube video page
     toget = "https://www.youtube.com/watch?v=" + l
@@ -39,7 +42,6 @@ for l in videos:
 
             all_info = str(html)
             #return the extracted metadata to S_RESULT.txt (change s_RESULT.txt to any output file you prefer)
-            fname = "s_RESULT.txt"
 
             if "promotedSparklesWebRenderer" in all_info:
                 place = all_info.find("promotedSparklesWebRenderer")
@@ -62,17 +64,18 @@ for l in videos:
                     title_place = info.find("websiteText")
                     end_place = info[title_place:].find("}")
                     line_sub_website = info[title_place+28:title_place+end_place-1]
-
+                if l:
+                    output.write(f"{l} | ")
+                    output.write(f"{line_sub_title} | ")
+                    output.write(f"{line_sub_description} | ")
+                    output.write(f"{line_sub_website} \n")
+                time.sleep(5)    
             """
             output the content is the following format
             video id | title | description | website url  
             """
-            with open(fname, "w", encoding="utf-8") as f:
-                f.write(f"{l} | ")
-                f.write(f"{line_sub_title} | ")
-                f.write(f"{line_sub_description} | ")
-                f.write(f"{line_sub_website} \n")
-            time.sleep(5)            
+        
         except:
             continue
     driver.close() 
+output.close()
