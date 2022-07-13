@@ -40,7 +40,6 @@ for l in videos:
             #get the adVideo id tag
             for line in commas:            
                 if('adVideoId"' in str(line)):
-                    print(line)
                     reverse = line[::-1]
                     # print(reverse + " REVERSED \n ")
                     end = reverse.find('\"')
